@@ -60,6 +60,7 @@ while tries < 11 :
             print("Vous vous êtes trompé\n")
             hd.drawing_number(tries)
             print(f'Lettres déjà choisies : {selected_letters}\n')
+            print(f'Mot à deviner : {word_guessed}\n')
           else:
             hd.drawing_number(tries)
   else:
