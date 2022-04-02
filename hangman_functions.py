@@ -1,4 +1,8 @@
 import time
+import sys
+import subprocess
+subprocess.check_call([sys.executable, '-m', 'pip', 'install', 
+'tqdm'])
 from tqdm import tqdm
 from os import system, name
 from list_of_words import words_list

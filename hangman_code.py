@@ -9,8 +9,9 @@ Original file is located at
 
 from os import get_terminal_size
 import hangman_drawings as hd
-
 import hangman_functions as hf
+
+
 hf.loading_game()
 terminal_size = get_terminal_size()
 columns = terminal_size.columns
