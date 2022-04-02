@@ -1,4 +1,5 @@
 import time
+from tqdm import tqdm
 from os import system, name
 from list_of_words import words_list
 from random import choice
@@ -29,12 +30,12 @@ def word_shape():
 
 def loading_game():
   # Loading game animation at game start
-    for x in range(0, 4):
-        clear()
-        loading = "Loading game" + "." * x
-        print(loading, end="\r")
-        time.sleep(1)
-        clear()
+    clear()
+    print ("Loading game:")
+    for x in tqdm(range(50)):
+        time.sleep(0.05)
+    time.sleep(2)
+    clear()
 
 
 def letter_found(selected_word, letter, word_guessed):

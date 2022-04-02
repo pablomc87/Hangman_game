@@ -8,11 +8,10 @@ Original file is located at
 """
 
 from os import get_terminal_size
-
 import hangman_drawings as hd
 
 import hangman_functions as hf
-
+hf.loading_game()
 terminal_size = get_terminal_size()
 columns = terminal_size.columns
 print("##########################".center(columns), end='')
@@ -36,6 +35,7 @@ tries = 0
 while tries < 11 :
   if word_guessed != selected_word:
       sel_letter = input("Choisissez une lettre : ").upper()
+      hf.clear()
       if sel_letter.isalpha() == False:
         print("Il faut rentrer une lettre.\n")
       elif sel_letter in 'ÁÀÂÉÈÊÍÌÎÓÒÔÚÙÛ':
@@ -45,6 +45,8 @@ while tries < 11 :
       elif sel_letter in selected_letters:
         print(f'Vous avez choisi la lettre {sel_letter}\n')
         print("Vous avez déjà essayé cette lettre. Veuillez essayer une autre lettre.\n")
+        hd.drawing_number(tries)
+        print(f'Mot à deviner : {word_guessed}\n')
         print(f'Lettres déjà choisies : {selected_letters}\n')
       else: 
         selected_letters.append(sel_letter)
@@ -52,6 +54,7 @@ while tries < 11 :
         if sel_letter in selected_word:
           word_guessed = hf.letter_found(selected_word, sel_letter, word_guessed)
           print(f'Bien joué ! Vous avez trouvé une lettre\n')
+          hd.drawing_number(tries)
           print(f'Mot à deviner : {word_guessed}\n')
           print(f'Lettres déjà choisies : {selected_letters}\n')
         else:
@@ -59,10 +62,11 @@ while tries < 11 :
           if tries < 11:
             print("Vous vous êtes trompé\n")
             hd.drawing_number(tries)
-            print(f'Lettres déjà choisies : {selected_letters}\n')
             print(f'Mot à deviner : {word_guessed}\n')
+            print(f'Lettres déjà choisies : {selected_letters}\n')
           else:
             hd.drawing_number(tries)
+            print(f'Le mot qu\'on cherchait était : {selected_word.upper()} \n')
   else:
     print("Vous avez trouvé le mot, bravo !")
     break
